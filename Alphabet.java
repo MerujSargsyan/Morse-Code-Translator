@@ -56,6 +56,7 @@ class Alphabet {
         alphabet.put("---..", '8');
         alphabet.put("----.", '9');
         alphabet.put("-----", '0');
+        alphabet.put(" ", ' ');
     }
 
     /** 
