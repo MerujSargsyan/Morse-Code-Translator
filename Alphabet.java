@@ -1,5 +1,5 @@
 /**
-* Alphabet claass initializes a hashtable that maps from Morse Code to 
+* Alphabet class initializes a hashtable that maps from Morse Code to 
 * it's string value from the english alphabet A-Z and the number 0-9
 *
 * This class is intended to convert individual letters and create a basis
@@ -17,6 +17,8 @@ class Alphabet {
     /**
     * Maps Morse Code to it's alpha-numeric value based on the
     * standard alphabet
+    *
+    * Note: grammar symbols such as ,.;: have no mapping in morse code
     */
     protected Alphabet() {
         alphabet.put(".-", 'A');
@@ -45,6 +47,7 @@ class Alphabet {
         alphabet.put("-..-", 'X');
         alphabet.put("-.--", 'Y');
         alphabet.put("--..", 'Z');
+        alphabet.put(" ", ' ');
 
         alphabet.put(".----", '1');
         alphabet.put("..---", '2');
@@ -56,7 +59,6 @@ class Alphabet {
         alphabet.put("---..", '8');
         alphabet.put("----.", '9');
         alphabet.put("-----", '0');
-        alphabet.put(" ", ' ');
     }
 
     /** 
