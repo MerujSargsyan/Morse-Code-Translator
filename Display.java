@@ -2,6 +2,8 @@
 * The Display class uses the Parser to convert given text or morse code into
 * a flashing "light", being represented by changing the background of a panel
 * to and from black based on the morse code.
+*
+* @author Meruzhan Sargsyan
 */
 
 import java.time.LocalTime;
@@ -36,21 +38,46 @@ class Display {
         display.show();
     }
 
-    void test() {
-        boolean currentlyBlack = true;
+    void displayMorseAsLight(String morseCode) {
+        char[] arrMorse = morseCode.toCharArray();
+
         while(true) {
+            for(int i = 0; i < arrMorse.length; i++) {
+                try {
+                    switch(arrMorse[i]) {
+                        case '.':
+                            lightOn(500);
+                            break;
+                        case '-':
+                            lightOn(1000);
+                            break;
+                    }
+                } catch(Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+                
+            }
             try {
-                Thread.sleep(TIMEBETWEENLIGHTS);
+                Thread.sleep(3000);   
             } catch(Exception ex) {
                 System.out.println(ex.getMessage());
-                return;
             }
-            if(currentlyBlack) {
-                panel.setBackground(Color.WHITE);
-            } else {
-                panel.setBackground(Color.BLACK);
-            }
-            currentlyBlack = !currentlyBlack;
+             
+        }
+    }
+
+    void lightOn(int time) {
+        panel.setBackground(Color.WHITE);
+        try {
+            Thread.sleep(time);
+        } catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        panel.setBackground(Color.BLACK);
+        try {
+            Thread.sleep(time);
+        } catch(Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 }
