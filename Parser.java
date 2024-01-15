@@ -16,7 +16,7 @@ class Parser {
     }
 
     /** 
-    * Converts a given text to morse code
+    * Converts a given text to morse code and adds '/'
     *
     * @param String text to convert to morse code
     * @return String morse code representation of parameter
@@ -30,10 +30,12 @@ class Parser {
 
         for(int j = 0; j < text.length(); j++) {
             char l = mText[j];
-            output += alphabet.charToMorse(l);
-            if(l != ' ') {
-                output += ' ';
+            if(l == ' ') {
+                output += '/';
+            } else {
+                output += alphabet.charToMorse(l);
             }
+            
         }
 
         return output;
@@ -54,6 +56,9 @@ class Parser {
         for(int i = 0; i < morseArray.length; i++) {
             if(morseArray[i] == ' ') {
                 output += alphabet.morseToChar(currentCode);
+                currentCode = "";
+            } else if(morseArray[i] == '/') {
+                output += " ";
                 currentCode = "";
             } else {
                 currentCode += morseArray[i];

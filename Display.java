@@ -16,7 +16,11 @@ class Display {
     private JPanel panel;
     private final int XSIZE = 150;
     private final int YSIZE = 150;
-    private final int TIMEBETWEENLIGHTS = 1000; // 1000 ms = 1 s
+    private final int DOTTIME = 1000; // 1 second
+    private final int DASHTIME = 3000; // 3 seconds
+    private final int TIMEBETWEENSYMBOLS = 1000; // 1 seconds
+    private final int TIMEBETWEENLETTERS = 3000; // 3 seconds
+    private final int TIMEBETWEENWORDS = 7000; // 7 seconds
 
     /** 
     * Constructor creates a JPanel and JFrame of size XSIZE and YSIZE
@@ -46,11 +50,13 @@ class Display {
                 try {
                     switch(arrMorse[i]) {
                         case '.':
-                            lightOn(500);
+                            lightOn(DOTTIME);
                             break;
                         case '-':
-                            lightOn(1000);
+                            lightOn(DASHTIME);
                             break;
+                        case '/':
+                            Thread.sleep(TIMEBETWEENWORDS);
                     }
                 } catch(Exception ex) {
                     System.out.println(ex.getMessage());
@@ -58,7 +64,7 @@ class Display {
                 
             }
             try {
-                Thread.sleep(3000);   
+                Thread.sleep(TIMEBETWEENWORDS);   
             } catch(Exception ex) {
                 System.out.println(ex.getMessage());
             }
@@ -75,7 +81,7 @@ class Display {
         }
         panel.setBackground(Color.BLACK);
         try {
-            Thread.sleep(time);
+            Thread.sleep(TIMEBETWEENSYMBOLS);
         } catch(Exception ex) {
             System.out.println(ex.getMessage());
         }
