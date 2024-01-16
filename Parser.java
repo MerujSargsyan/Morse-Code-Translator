@@ -35,7 +35,7 @@ class Parser {
             } else {
                 output += alphabet.charToMorse(l);
             }
-            
+            output += ' ';
         }
 
         return output;

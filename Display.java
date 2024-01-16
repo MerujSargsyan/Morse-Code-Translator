@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 
+import java.lang.InterruptedException;
+
 class Display {
     private JFrame display;
     private JPanel panel;
@@ -39,51 +41,33 @@ class Display {
 
         display.add(panel);
         display.setVisible(true);
-        display.show();
     }
 
-    void displayMorseAsLight(String morseCode) {
+    void displayMorseAsLight(String morseCode) throws InterruptedException{
         char[] arrMorse = morseCode.toCharArray();
 
         while(true) {
             for(int i = 0; i < arrMorse.length; i++) {
-                try {
-                    switch(arrMorse[i]) {
-                        case '.':
-                            lightOn(DOTTIME);
-                            break;
-                        case '-':
-                            lightOn(DASHTIME);
-                            break;
-                        case '/':
-                            Thread.sleep(TIMEBETWEENWORDS);
-                    }
-                } catch(Exception ex) {
-                    System.out.println(ex.getMessage());
-                }
-                
+                switch(arrMorse[i]) {
+                    case '.':
+                       lightOn(DOTTIME);
+                       break;
+                    case '-':
+                       lightOn(DASHTIME);
+                        break;
+                    case '/':
+                        Thread.sleep(TIMEBETWEENWORDS);
+                }  
             }
-            try {
-                Thread.sleep(TIMEBETWEENWORDS);   
-            } catch(Exception ex) {
-                System.out.println(ex.getMessage());
-            }
+            Thread.sleep(TIMEBETWEENWORDS);   
              
         }
     }
 
-    void lightOn(int time) {
+    void lightOn(int time) throws InterruptedException{
         panel.setBackground(Color.WHITE);
-        try {
-            Thread.sleep(time);
-        } catch(Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        Thread.sleep(time);
         panel.setBackground(Color.BLACK);
-        try {
-            Thread.sleep(TIMEBETWEENSYMBOLS);
-        } catch(Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        Thread.sleep(TIMEBETWEENSYMBOLS);
     }
 }
