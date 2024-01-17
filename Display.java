@@ -43,6 +43,11 @@ class Display {
         display.setVisible(true);
     }
 
+    /** 
+    * Displays given morse code as a series of white flashes on the Panel
+    *
+    * @param String morseCode to interpret
+    */
     void displayMorseAsLight(String morseCode) throws InterruptedException{
         char[] arrMorse = morseCode.toCharArray();
 
@@ -64,6 +69,12 @@ class Display {
         }
     }
 
+    /** 
+    * Helper method for displayMorseAsLight.
+    * Simply changes the background for a given time.
+    *
+    * @param int time to stay on white for
+    */
     void lightOn(int time) throws InterruptedException{
         panel.setBackground(Color.WHITE);
         Thread.sleep(time);

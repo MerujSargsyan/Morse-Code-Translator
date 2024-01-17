@@ -49,8 +49,9 @@ class Parser {
     * @param String text representation of the parameter
     */
     String convertMorseToText(String morseCode) {
+        String convertedMorse = morseCode + " ";
         String output = "";
-        char[] morseArray = morseCode.toCharArray();
+        char[] morseArray = convertedMorse.toCharArray();
 
         String currentCode = "";
         for(int i = 0; i < morseArray.length; i++) {
