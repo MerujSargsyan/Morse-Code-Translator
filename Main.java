@@ -3,7 +3,7 @@ public class Main {
         Parser p = new Parser();
 
         if(args.length != 2) {
-            System.out.println("Incorrect usage, type " + "-h help" + 
+            System.out.println("Incorrect usage, type " + " '-h help' " + 
                 " for help");
             return;
         }
@@ -24,7 +24,7 @@ public class Main {
                 "-m <Text>");
             System.out.println("To translate from morse to text: " + 
                 "-t <MorseCode>");
-            System.out.println("To see a visual representation of a word in " +
+            System.out.println("To see a visual representation of text in " +
                 "morse code: -d <Text>");
         } else {
             System.out.println("Incorrect usage, type -h for help");
