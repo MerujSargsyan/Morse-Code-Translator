@@ -24,5 +24,12 @@
  To translate from morse to text: java Main -t <Morse>
  To visualise text via blinks:    java Main -d <Text>
  ```
+### What I learned:
+<ul>
+  <li> Acquiring command line input</li>
+  <li> Using a map data structure</li>
+  <li> Using time manipulation</li>
+  <li> Managing exceptions</li>
+</ul>
 
 ### Thank you very much and have fun! :)
