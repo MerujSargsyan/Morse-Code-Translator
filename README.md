@@ -20,9 +20,9 @@
  #Compile & Run:
  Compile: javac *.java
 
- To translate from text to morse: java Main -m <Text>
- To translate from morse to text: java Main -t <Morse>
- To visualise text via blinks:    java Main -d <Text>
+ To translate from text to morse: java Main -m "<Text>"
+ To translate from morse to text: java Main -t "<Morse>"
+ To visualise text via blinks:    java Main -d "<Text>"
  ```
 ### What I learned:
 <ul>
