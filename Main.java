@@ -1,35 +1,13 @@
+import java.util.Arrays;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class Main {
     public static void main(String[] args) {
-        String[] input = openInputWindow();
+        String[] input = inputWindow();
         Parser p = new Parser();
 
-        /*if(inputs[0].equals("-h")) {
-            printHelp();
-        }
-
-        if(args.length != 2) {
-            System.out.println("Incorrect usage, type " + " '-h' " + 
-                " for help");
-            return;
-        }
-
-        if("-morse".equals(args[0])) {
-            System.out.println(p.convertTextToMorse(args[1]));
-        } else if("-d".equals(args[0])) {
-            Display d = new Display();
-            try {
-                d.displayMorseAsLight(p.convertTextToMorse(args[1]));
-            } catch(Exception ex) {
-                ex.printStackTrace();
-            }
-        } else if("-text".equals(args[0])) {
-            System.out.println(p.convertMorseToText(args[1]));
-        } else {
-            System.out.println("Incorrect usage, type -h for help");
-        }*/
     }
 
     public static void printHelp() {
@@ -41,7 +19,7 @@ public class Main {
             "morse code: -d <Text>");
     }
 
-    public static String[] openInputWindow() {
+    public static String[] inputWindow() {
         JFrame window = new JFrame("Morse Input");
         window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
         window.setSize(500, 500);
@@ -55,12 +33,24 @@ public class Main {
 
         JButton jb = new JButton("Translate");
 
+        String[] output = new String[2];
+
+        jb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                output[0] = (String)jcb.getSelectedItem();
+                output[1] = jta.getText();
+                System.out.println(Arrays.toString(output));
+            }
+        });
+
         window.add(jcb);
         window.add(jta);
         window.add(jb);
         window.setVisible(true);
 
-        return new String[]{"a", "b"};
+
+        return output;
     }
 }
 
