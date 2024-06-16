@@ -5,9 +5,7 @@ import java.awt.event.*;
 
 public class Main {
     public static void main(String[] args) {
-        String[] input = inputWindow();
-        Parser p = new Parser();
-
+        inputWindow();
     }
 
     public static void printHelp() {
@@ -19,7 +17,7 @@ public class Main {
             "morse code: -d <Text>");
     }
 
-    public static String[] inputWindow() {
+    public static void inputWindow() {
         JFrame window = new JFrame("Morse Input");
         window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
         window.setSize(500, 500);
@@ -33,14 +31,14 @@ public class Main {
 
         JButton jb = new JButton("Translate");
 
-        String[] output = new String[2];
 
         jb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String[] output = new String[2];
                 output[0] = (String)jcb.getSelectedItem();
                 output[1] = jta.getText();
-                System.out.println(Arrays.toString(output));
+                parseInput(output);
             }
         });
 
@@ -48,9 +46,18 @@ public class Main {
         window.add(jta);
         window.add(jb);
         window.setVisible(true);
+    }
 
-
-        return output;
+    public static void parseInput(String[] input) {
+        Parser p = new Parser();
+        switch(input[0]) {
+            case "-morse":
+                System.out.println(p.convertMorseToText(input[1]));
+                break;
+            case "-text":
+                System.out.println(p.convertTextToMorse(input[1]));
+                break;
+        }
     }
 }
 
