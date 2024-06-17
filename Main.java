@@ -31,7 +31,6 @@ public class Main {
 
         JButton jb = new JButton("Translate");
 
-
         jb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,6 +50,7 @@ public class Main {
     public static void parseInput(String[] input) {
         Parser p = new Parser();
         switch(input[0]) {
+            //TODO: figure out how to specify type of conversion
             case "-morse":
                 System.out.println(p.convertMorseToText(input[1]));
                 break;
