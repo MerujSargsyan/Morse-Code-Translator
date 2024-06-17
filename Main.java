@@ -21,13 +21,17 @@ public class Main {
         JFrame window = new JFrame("Morse Input");
         window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
         window.setSize(500, 500);
-        window.setLayout(new BoxLayout(window.getContentPane(), BoxLayout.PAGE_AXIS));
+        window.setLayout(new BorderLayout());
 
-        JComboBox jcb = new JComboBox(new String[]{"-morse", "-text"});
+        JComboBox jcb = new JComboBox(new String[]{"from morse", "from text"});
 
         JTextArea jta = new JTextArea(5, 20);
         jta.setLineWrap(true);
         jta.setWrapStyleWord(true);
+
+        JTextArea jtaOut = new JTextArea(5, 20);
+        jtaOut.setLineWrap(true);
+        jtaOut.setWrapStyleWord(true);
 
         JButton jb = new JButton("Translate");
 
@@ -37,25 +41,26 @@ public class Main {
                 String[] output = new String[2];
                 output[0] = (String)jcb.getSelectedItem();
                 output[1] = jta.getText();
-                parseInput(output);
+                parseInput(output, jtaOut);
             }
         });
 
-        window.add(jcb);
-        window.add(jta);
-        window.add(jb);
+        window.add(jcb, BorderLayout.NORTH);
+        window.add(jta, BorderLayout.WEST);
+        window.add(jb, BorderLayout.SOUTH);
+        window.add(jtaOut, BorderLayout.EAST);
         window.setVisible(true);
     }
 
-    public static void parseInput(String[] input) {
+    public static void parseInput(String[] input, JTextArea field) {
         Parser p = new Parser();
         switch(input[0]) {
             //TODO: figure out how to specify type of conversion
-            case "-morse":
-                System.out.println(p.convertMorseToText(input[1]));
+            case "from morse":
+                field.setText(p.convertMorseToText(input[1]));
                 break;
-            case "-text":
-                System.out.println(p.convertTextToMorse(input[1]));
+            case "from text":
+                field.setText(p.convertTextToMorse(input[1]));
                 break;
         }
     }
